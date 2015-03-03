@@ -1,5 +1,0 @@
-setuptools
-siguvtheme.resources
-uvc.themes.btwidgets
-
-[test]
