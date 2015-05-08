@@ -4,11 +4,9 @@ import os
 import grok
 
 from . import templates_dir
-from .resources import tune
+#from .resources import tune
 from uvc.tbskin.skin import ITBSkin, Layout
-
-
-grok.templatedir(templates_dir)
+from uvc.api.api import get_template
 
 
 class ILayer(grok.IDefaultBrowserLayer):
@@ -22,7 +20,8 @@ class ISkin(ILayer, ITBSkin):
 class MasterLayout(Layout):
     grok.name("")
     grok.layer(ILayer)
+    template = get_template('masterlayout', templates_dir)
 
     def update(self):
-        tune.need()
+        #tune.need()
         Layout.update(self)

@@ -18,9 +18,7 @@ from uvcsite.viewlets import steps
 from zope.component import getMultiAdapter, queryMultiAdapter
 from zope.interface import Interface
 from zope.viewlet.interfaces import IContentProvider
-
-
-grok.templatedir(templates_dir)
+from uvc.api.api import get_template
 
 
 class Navigation(grok.ViewletManager):
@@ -47,12 +45,14 @@ class PersonalPreferencesViewlet(PersonalPreferencesViewlet):
 class PersonalPreferencesTemplate(PageTemplate):
     grok.view(PersonalPreferencesViewlet)
     grok.layer(ILayer)
+    template = get_template(templates_dir, 'personalpreferencestemplate.cpt')
 
 
 class FavIcon(grok.Viewlet):
     grok.layer(ILayer)
     grok.viewletmanager(managers.Headers)
     grok.context(Interface)
+    template = get_template(templates_dir, 'favicon.cpt')
 
 
 class GlobalMenuViewlet(menuviewlets.GlobalMenuViewlet):
@@ -74,16 +74,19 @@ class GlobalMenuViewlet(menuviewlets.GlobalMenuViewlet):
 class GlobalMenuTemplate(PageTemplate):
     grok.layer(ILayer)
     grok.view(menuviewlets.GlobalMenuViewlet)
+    template = get_template(templates_dir, 'globalmenutemplate.cpt')
 
 
 class NavigationTemplate(PageTemplate):
     grok.layer(ILayer)
     grok.view(GlobalMenuViewlet)
+    template = get_template(templates_dir, 'navigationtemplate.cpt')
 
 
 class BGHeader(viewlets.header.BGHeader):
     grok.layer(ILayer)
     grok.order(30)
+    template = get_template(templates_dir, 'bgheader.cpt')
 
     def application_url(self):
         return util.application_url(self.request, self.context)
@@ -92,6 +95,7 @@ class BGHeader(viewlets.header.BGHeader):
 class DocumentActionsTemplate(PageTemplate):
     grok.view(DocumentActionsMenuViewlet)
     grok.layer(ILayer)
+    template = get_template(templates_dir, 'documentactionstemplate.cpt')
 
 
 class Breadcrumbs(Breadcrumbs):
@@ -115,6 +119,7 @@ class StepsProgressBar(steps.StepsProgressBar):
 class DocumentTabs(grok.Viewlet):
     grok.viewletmanager(IAboveContent)
     grok.context(Interface)
+    template = get_template(templates_dir, 'documenttabs.cpt')
 
     def tabs(self):
         menu = queryMultiAdapter((self.view.context, self.request, self.view),
