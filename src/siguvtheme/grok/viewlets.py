@@ -32,7 +32,7 @@ class PersonalPreferencesViewlet(PersonalPreferencesViewlet):
 
     @property
     def name(self):
-        return ""
+        return self.request.principal.id
 
     def getFooterViewlet(self):
         viewlets = getMultiAdapter(
@@ -66,6 +66,14 @@ class GlobalMenuViewlet(menuviewlets.GlobalMenuViewlet):
     def quicklinks(self):
         menu = queryMultiAdapter((self.view.context, self.request, self.view),
                                  IContentProvider, 'quicklinks')
+        if menu is not None:
+            return menu.getMenuItems()
+        return None
+
+    @property
+    def usermenu(self):
+        menu = queryMultiAdapter((self.view.context, self.request, self.view),
+                                 IContentProvider, 'personalpreferences')
         if menu is not None:
             return menu.getMenuItems()
         return None
