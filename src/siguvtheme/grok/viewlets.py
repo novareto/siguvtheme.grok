@@ -30,6 +30,13 @@ class PersonalPreferencesViewlet(PersonalPreferencesViewlet):
     grok.layer(ILayer)
     grok.require('zope.View')
 
+    def getFooter(self):
+        return self.getFooterViewlet()
+
+    def getPersonal(self):
+        import pdb; pdb.set_trace() 
+        return self.menus
+
     @property
     def name(self):
         return self.request.principal.id
@@ -59,6 +66,18 @@ class GlobalMenuViewlet(menuviewlets.GlobalMenuViewlet):
     grok.layer(ILayer)
     grok.viewletmanager(Navigation)
     grok.order(1)
+
+    def getUser(self):
+        return self.usermenu
+
+    def getNavigation(self):
+        return self.menus
+
+    def getRenderableItems(self):
+        return self.renderableitems
+
+    def getQuicklinks(self):
+        return self.quicklinks()
 
     def application_url(self):
         return util.application_url(self.request, self.context)
