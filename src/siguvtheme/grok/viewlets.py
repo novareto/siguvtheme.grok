@@ -3,6 +3,8 @@
 # cklinger@novareto.de
 
 import grok
+import siguvtheme.grok
+from os import path
 from grok import util
 
 from .layout import ILayer
@@ -13,6 +15,7 @@ from uvc.layout.interfaces import IAboveContent
 from uvc.layout.slots import managers, menuviewlets
 from uvc.layout.slots.menuviewlets import DocumentActionsMenuViewlet
 from uvc.layout.slots.menuviewlets import PersonalPreferencesViewlet
+from uvc.layout.slots.menuviewlets import FooterTemplate
 from uvc.tbskin.viewlets import Breadcrumbs
 from uvcsite.viewlets import steps
 from zope.component import getMultiAdapter, queryMultiAdapter
@@ -21,9 +24,20 @@ from zope.viewlet.interfaces import IContentProvider
 from uvc.api.api import get_template
 
 
+template_dir = path.join(
+    path.dirname(siguvtheme.grok.__file__), 'templates')
+
+
+
 class Navigation(grok.ViewletManager):
     grok.name('siguv-nav')
     grok.context(Interface)
+
+
+class FooterTemplate(FooterTemplate):
+    grok.layer(ILayer)
+
+    template = get_template(template_dir, 'footer.cpt')
 
 
 class PersonalPreferencesViewlet(PersonalPreferencesViewlet):
