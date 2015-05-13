@@ -48,7 +48,6 @@ class PersonalPreferencesViewlet(PersonalPreferencesViewlet):
         return self.getFooterViewlet()
 
     def getPersonal(self):
-        import pdb; pdb.set_trace() 
         return self.menus
 
     @property

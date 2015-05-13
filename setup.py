@@ -29,7 +29,6 @@ setup(name='siguvtheme.grok',
       install_requires=[
           'setuptools',
           'siguvtheme.resources',
-          'uvc.themes.btwidgets',
       ],
       extras_require = {'test': tests_require},
       entry_points={

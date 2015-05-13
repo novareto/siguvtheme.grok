@@ -16,7 +16,7 @@ from uvc.api.api import get_template
 class Index(views.Index):
     grok.layer(ILayer)
 
-    cssClasses = {'table': 'table table-hover'}
+    cssClasses = {'table': 'table table-hover table-striped'}
 
 
 class WizardTemplate(pt.PageTemplate):
