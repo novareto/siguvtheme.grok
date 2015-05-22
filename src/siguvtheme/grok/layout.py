@@ -25,3 +25,8 @@ class MasterLayout(Layout):
     def update(self):
         tune.need()
         Layout.update(self)
+
+    def default_namespace(self):
+        namespace = Layout.default_namespace(self)
+        namespace['content'] = self.view.content()
+        return namespace
