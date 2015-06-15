@@ -152,9 +152,6 @@ class Breadcrumbs(Breadcrumbs):
 class StepsProgressBar(steps.StepsProgressBar):
     grok.layer(ILayer)
 
-    def available(self):
-        return False
-
 
 class DocumentTabs(grok.Viewlet):
     grok.viewletmanager(IAboveContent)
