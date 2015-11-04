@@ -30,7 +30,7 @@ template_dir = path.join(
 
 
 class Navigation(grok.ViewletManager):
-    grok.name('siguv-nav')
+    grok.name('navigation')
     grok.context(Interface)
 
 
