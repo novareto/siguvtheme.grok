@@ -149,8 +149,8 @@ class Breadcrumbs(Breadcrumbs):
         return None
 
 
-class StepsProgressBar(steps.StepsProgressBar):
-    grok.layer(ILayer)
+#class StepsProgressBar(steps.StepsProgressBar):
+#    grok.layer(ILayer)
 
 
 class DocumentTabs(grok.Viewlet):
