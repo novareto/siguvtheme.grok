@@ -14,7 +14,7 @@ class ILayer(grok.IDefaultBrowserLayer):
 
 
 class ISkin(ILayer, ITBSkin):
-    grok.skin('siguvtheme')
+    grok.skin("siguvtheme")
 
 
 class MasterLayout(Layout):
@@ -28,5 +28,5 @@ class MasterLayout(Layout):
 
     def default_namespace(self):
         namespace = Layout.default_namespace(self)
-        namespace['content'] = self.view.content()
+        namespace["content"] = self.view.content()
         return namespace

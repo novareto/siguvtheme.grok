@@ -110,6 +110,9 @@ class GlobalMenuViewlet(menuviewlets.GlobalMenuViewlet):
             return menu.getMenuItems()
         return None
 
+    def getFooter(self):
+        return []
+
 
 class GlobalMenuTemplate(PageTemplate):
     grok.layer(ILayer)
